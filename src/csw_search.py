@@ -93,7 +93,7 @@ def csw_query(endpoint, bbox=None, start=None, stop=None, kw_names=None, crs="ur
         ]
     else:
         filter_list = constraints
-    get_csw_records(csw, filter_list, pagesize=10, maxrecords=10)
+    get_csw_records(csw, filter_list, pagesize=10, maxrecords=10000)
 
     print("Found {} records.\n".format(len(csw.records.keys())))
     for key, value in list(csw.records.items()):
@@ -127,7 +127,7 @@ def get_csw_records(csw, filter_list, pagesize=10, maxrecords=10000):
             break
     csw.records.update(csw_records)
 
-def read_keywords(func, csw, url_endpoint, outputschema, accepted_vocabularies, pagesize=10, maxrecords=10):
+def read_keywords(func, csw, url_endpoint, outputschema, accepted_vocabularies, pagesize=10, maxrecords=10000):
     """
     Extract keyword from an endpoint.
     Different function (fun) can be used to use a different outputschema.
